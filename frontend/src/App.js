@@ -1,12 +1,18 @@
-import "./App.css";
-import PatientsContextProvider from "./context/PatientsContext";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
+import DetailsPage from "./pages/DetailsPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
 	return (
-		<PatientsContextProvider>
-			<MainPage />
-		</PatientsContextProvider>
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<MainPage />} />
+				<Route path="/details/:id" element={<DetailsPage />} />
+				<Route path="/register" element={<RegisterPage />} />
+			</Routes>
+		</div>
 	);
 }
 
