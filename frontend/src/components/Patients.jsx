@@ -1,7 +1,8 @@
-import { React } from "react";
-import patientsList from "../database";
+import React, { useContext } from "react";
+import { PatientsContext } from "../context/PatientsContext";
 
 function Patients() {
+	const { dataPatients } = useContext(PatientsContext);
 	return (
 		<table id="patientsList">
 			<thead>
@@ -13,7 +14,7 @@ function Patients() {
 				</tr>
 			</thead>
 			<tbody>
-				{patientsList.map((patient) => {
+				{dataPatients.map((patient) => {
 					return (
 						<tr key={patient}>
 							<td>{patient.Nome}</td>
