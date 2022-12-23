@@ -3,7 +3,7 @@ import { React } from "react";
 function DetailsPage() {
 	return (
 		<>
-			<h1>Detalhes</h1>
+			<h1>Detalhes do Paciente</h1>
 		</>
 	);
 }
