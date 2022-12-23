@@ -12,7 +12,9 @@ function MainPage() {
 		const filteredPatients = dataPatients.filter(
 			(patient) =>
 				patient.CPF === searchInput ||
-				patient.nome.toLowerCase() === searchInput.toLowerCase() ||
+				patient.nome
+					.toLowerCase()
+					.includes(searchInput.toLowerCase()) ||
 				patient.status.toLowerCase() === searchInput.toLowerCase()
 		);
 		console.log("FILTRO AQUI", filteredPatients);
