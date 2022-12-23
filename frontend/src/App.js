@@ -1,10 +1,13 @@
-import './App.css';
-import MainPage from './pages/MainPage';
+import "./App.css";
+import PatientsContextProvider from "./context/PatientsContext";
+import MainPage from "./pages/MainPage";
 
 function App() {
-  return (
-    <MainPage/>
-  );
+	return (
+		<PatientsContextProvider>
+			<MainPage />
+		</PatientsContextProvider>
+	);
 }
 
 export default App;
