@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { PatientsContext } from "../context/PatientsContext";
 import Loading from "./Loading";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import "../style/patients.css";
 
 function Patients() {
 	const { dataPatients, isLoading, patientsFiltered } =
@@ -11,45 +13,51 @@ function Patients() {
 			{isLoading ? (
 				<Loading />
 			) : (
-				<table id="patientsList">
-					<thead>
-						<tr>
-							<th>Nome</th>
-							<th>CPF</th>
-							<th>Status</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
+				<Table id="patientsList" className="table-patients">
+					<Thead>
+						<Tr>
+							<Th>Nome</Th>
+							<Th>CPF</Th>
+							<Th>Status</Th>
+							<Th>Ações</Th>
+						</Tr>
+					</Thead>
+					<Tbody>
 						{patientsFiltered.length > 0
 							? patientsFiltered.map((patient) => {
 									return (
-										<tr key={patient}>
-											<td>{patient.nome}</td>
-											<td>{patient.CPF}</td>
-											<td>{patient.status}</td>
-											<td>
-												<a>Editar</a>
-												<a>Ver detalhes</a>
-											</td>
-										</tr>
+										<Tr key={patient}>
+											<Td>{patient.nome}</Td>
+											<Td>{patient.CPF}</Td>
+											<Td>{patient.status}</Td>
+											<Td>
+												<a
+													href={`/details/${patient.id}`}
+												>
+													Ver detalhes
+												</a>
+											</Td>
+										</Tr>
 									);
 							  })
 							: dataPatients.map((patient) => {
 									return (
-										<tr key={patient}>
-											<td>{patient.nome}</td>
-											<td>{patient.CPF}</td>
-											<td>{patient.status}</td>
-											<td>
-												<a>Editar</a>
-												<a>Ver detalhes</a>
-											</td>
-										</tr>
+										<Tr key={patient}>
+											<Td>{patient.nome}</Td>
+											<Td>{patient.CPF}</Td>
+											<Td>{patient.status}</Td>
+											<Td>
+												<a
+													href={`/details/${patient.id}`}
+												>
+													Ver detalhes
+												</a>
+											</Td>
+										</Tr>
 									);
 							  })}
-					</tbody>
-				</table>
+					</Tbody>
+				</Table>
 			)}
 		</>
 	);
