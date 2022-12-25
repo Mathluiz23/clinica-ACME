@@ -5,14 +5,24 @@ export const PatientsContext = createContext();
 
 function PatientsContextProvider({ children }) {
 	const [dataPatients, setDataPatients] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+	const [patientsFiltered, setPatientsFiltered] = useState([]);
 
 	useEffect(() => {
-		setIsLoading(true);
-		setTimeout(() => {
-			setDataPatients(data);
-		}, 2000);
-		setIsLoading(false);
+		const exists = localStorage.getItem("patients");
+		if (exists) {
+			setTimeout(() => {
+				const json = JSON.parse(exists);
+				setDataPatients(json);
+				setIsLoading(false);
+			}, 2000);
+		} else {
+			setTimeout(() => {
+				setDataPatients(data);
+				setIsLoading(false);
+				localStorage.setItem("patients", JSON.stringify(data));
+			}, 2000);
+		}
 	}, []);
 
 	const context = {
@@ -20,6 +30,8 @@ function PatientsContextProvider({ children }) {
 		setDataPatients,
 		isLoading,
 		setIsLoading,
+		patientsFiltered,
+		setPatientsFiltered,
 	};
 
 	return (
