@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { PatientsContext } from "../context/PatientsContext";
+import Swal from "sweetalert2";
 import "../style/registerPage.css";
 
 import {
@@ -27,7 +28,7 @@ function RegisterPage() {
 	const [adress, setAddress] = useState("");
 	const [city, setCity] = useState("");
 	const [status, setStatus] = useState("Ativo");
-	const [genre, setGenre] = useState("1");
+	const [genre, setGenre] = useState("Masculino");
 	const [dataLocalStorage, setDataLocalStorage] = useState([]);
 	const [isValid, setIsValid] = useState(false);
 
@@ -36,10 +37,7 @@ function RegisterPage() {
 		setDataLocalStorage(dataLocalStorage);
 	}, []);
 
-	function handleSubmitForm(event) {
-		event.preventDefault();
-		handleValidateForm();
-
+	function handleSubmitForm() {
 		const newPatient = [
 			{
 				id: dataLocalStorage.length + 1,
@@ -64,8 +62,35 @@ function RegisterPage() {
 	}
 
 	function handleValidateForm() {
-		if (name && email && cpf && phone && birthDate && city && status) {
+		if (
+			name &&
+			email &&
+			cpf &&
+			phone &&
+			birthDate &&
+			city &&
+			status &&
+			birthDate &&
+			genre
+		) {
 			setIsValid(true);
+		}
+
+		if (isValid) {
+			Swal.fire({
+				title: "Paciente Cadastrado com Sucesso!",
+				icon: "success",
+				confirmButtonText: "OK",
+				confirmButtonColor: "#2D9CDB",
+			});
+
+			setName("");
+			setEmail("");
+			setCpf("");
+			setPhone("");
+			setBirthDate("");
+			setAddress("");
+			setCity("");
 		}
 	}
 
@@ -206,8 +231,8 @@ function RegisterPage() {
 								className="submit-button"
 								type="button"
 								colorScheme="rgb(18, 7, 88)"
-								// isDisabled={isValid}
-								onClick={handleSubmitForm}
+								isDisabled={isValid}
+								onClick={handleSubmitForm && handleValidateForm}
 							>
 								Enviar
 							</Button>
