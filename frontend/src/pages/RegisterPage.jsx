@@ -18,7 +18,7 @@ import {
 import { useEffect } from "react";
 
 function RegisterPage() {
-	const { setDataPatints } = useContext(PatientsContext);
+	const { setDataPatients } = useContext(PatientsContext);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [cpf, setCpf] = useState("");
@@ -59,7 +59,7 @@ function RegisterPage() {
 			const newData = [...dataLocalStorage, ...newPatient];
 			setDataLocalStorage(newData);
 			localStorage.setItem("patients", JSON.stringify(newData));
-			setDataPatints(newData);
+			setDataPatients(newData);
 		}
 	}
 
