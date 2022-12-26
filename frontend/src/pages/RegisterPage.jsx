@@ -16,10 +16,10 @@ import {
 	Button,
 	Select,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import NavBar from "../components/NavBar";
 
 function RegisterPage() {
-	const { setDataPatients } = useContext(PatientsContext);
+	const { setDataPatients, dataPatients } = useContext(PatientsContext);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [cpf, setCpf] = useState("");
@@ -29,51 +29,44 @@ function RegisterPage() {
 	const [city, setCity] = useState("");
 	const [status, setStatus] = useState("Ativo");
 	const [genre, setGenre] = useState("Masculino");
-	const [dataLocalStorage, setDataLocalStorage] = useState([]);
 	const [isValid, setIsValid] = useState(false);
 
-	useEffect(() => {
-		const dataLocalStorage = JSON.parse(localStorage.getItem("patients"));
-		setDataLocalStorage(dataLocalStorage);
-	}, []);
-
-	function handleSubmitForm() {
-		const newPatient = [
-			{
-				id: dataLocalStorage.length + 1,
-				nome: name,
-				email: email,
-				cpf: cpf,
-				telefone: phone,
-				dataDeNascimento: birthDate,
-				endereco: adress,
-				cidade: city,
-				status: status,
-				genero: genre,
-			},
-		];
-
-		if (isValid) {
-			const newData = [...dataLocalStorage, ...newPatient];
-			setDataLocalStorage(newData);
-			localStorage.setItem("patients", JSON.stringify(newData));
-			setDataPatients(newData);
+	function validateForm(newPatient) {
+		if (newPatient[0].nome !== "") {
+			setIsValid(true);
+		} else {
+			setIsValid(false);
+			console.log("NOME VAZIO");
 		}
-	}
 
-	function handleValidateForm() {
+		if (newPatient[0].email !== "") {
+			setIsValid(true);
+		}
+
 		if (
-			name &&
-			email &&
-			cpf &&
-			phone &&
-			birthDate &&
-			city &&
-			status &&
-			birthDate &&
-			genre
+			newPatient[0].cpf !== "" ||
+			newPatient[0].cpf.length === 11 ||
+			newPatient[0].cpf !== dataPatients.map((patient) => patient.cpf)
 		) {
 			setIsValid(true);
+		}
+
+		if (newPatient[0].telefone !== "") {
+			setIsValid(true);
+		}
+
+		if (newPatient[0].dataDeNascimento === "") {
+			setIsValid(true);
+		}
+
+		if (newPatient[0].cidade === "") {
+			setIsValid(true);
+		}
+
+		if (isValid) {
+			const newData = [...dataPatients, ...newPatient];
+			localStorage.setItem("patients", JSON.stringify(newData));
+			setDataPatients(newData);
 		}
 
 		if (isValid) {
@@ -94,11 +87,31 @@ function RegisterPage() {
 		}
 	}
 
+	function handleSubmitForm() {
+		const newPatient = [
+			{
+				id: dataPatients.length + 1,
+				nome: name,
+				email: email,
+				cpf: cpf,
+				telefone: phone,
+				dataDeNascimento: birthDate,
+				endereco: adress,
+				cidade: city,
+				status: status,
+				genero: genre,
+			},
+		];
+
+		validateForm(newPatient);
+	}
+
 	return (
 		<>
 			<Center className="header" as="header">
 				Cadastro de Pacientes
 			</Center>
+			<NavBar />
 			<Box className="box-form">
 				<Flex className="form-container">
 					<FormControl className="form">
@@ -107,18 +120,22 @@ function RegisterPage() {
 								<FormLabel htmlFor="nome">Nome</FormLabel>
 								<Input
 									id="nome"
+									variant="filled"
 									placeholder="Informe o nome completo"
 									onChange={(event) => {
 										setName(event.target.value);
 									}}
 									value={name}
 								/>
+								{name === " " ? (
+									<p>{`* Por favor informe um nome`}</p>
+								) : null}
 							</Box>
 							<Box className="box-form">
 								<FormLabel htmlFor="email">E-mail</FormLabel>
 								<Input
-									isRequired
 									id="email"
+									variant="filled"
 									type="email"
 									placeholder="exemplo@interprocess.com"
 									onChange={(event) => {
@@ -136,6 +153,7 @@ function RegisterPage() {
 								</FormLabel>
 								<Input
 									id="nasc"
+									variant="filled"
 									type="date"
 									onChange={(event) => {
 										setBirthDate(event.target.value);
@@ -147,6 +165,7 @@ function RegisterPage() {
 								<FormLabel htmlFor="cpf">CPF</FormLabel>
 								<Input
 									id="cpf"
+									variant="filled"
 									type="number"
 									placeholder="000-000.000-00"
 									onChange={(event) => {
@@ -164,6 +183,7 @@ function RegisterPage() {
 								</FormLabel>
 								<Input
 									id="endereco"
+									variant="filled"
 									placeholder="Rua Brasil 1"
 									onChange={(event) => {
 										setAddress(event.target.value);
@@ -175,6 +195,7 @@ function RegisterPage() {
 								<FormLabel htmlFor="cidade">Cidade</FormLabel>
 								<Input
 									id="cidade"
+									variant="filled"
 									placeholder="Porto Alegre"
 									onChange={(event) => {
 										setCity(event.target.value);
@@ -189,6 +210,7 @@ function RegisterPage() {
 								<FormLabel htmlFor="cel">Celular</FormLabel>
 								<Input
 									id="cel"
+									variant="filled"
 									type="number"
 									placeholder="(51) 99999-9999"
 									onChange={(event) => {
@@ -219,6 +241,7 @@ function RegisterPage() {
 									onChange={(event) => {
 										setStatus(event.target.value);
 									}}
+									value={status}
 								>
 									<option value="Ativo">Ativo</option>
 									<option value="Inativo">Inativo</option>
@@ -231,8 +254,20 @@ function RegisterPage() {
 								className="submit-button"
 								type="button"
 								colorScheme="rgb(18, 7, 88)"
-								isDisabled={isValid}
-								onClick={handleSubmitForm && handleValidateForm}
+								isDisabled={
+									name &&
+									email &&
+									birthDate &&
+									cpf &&
+									adress &&
+									city &&
+									phone &&
+									genre &&
+									status
+										? false
+										: true
+								}
+								onClick={handleSubmitForm}
 							>
 								Enviar
 							</Button>
