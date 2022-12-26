@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { PatientsContext } from "../context/PatientsContext";
+import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import "../style/patients.css";
@@ -28,7 +29,7 @@ function Patients() {
 									return (
 										<Tr key={patient}>
 											<Td>{patient.nome}</Td>
-											<Td>{patient.CPF}</Td>
+											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
 											<Td>
 												<a
@@ -44,14 +45,14 @@ function Patients() {
 									return (
 										<Tr key={patient}>
 											<Td>{patient.nome}</Td>
-											<Td>{patient.CPF}</Td>
+											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
 											<Td>
-												<a
-													href={`/details/${patient.id}`}
+												<Link
+													to={`/details/${patient.id}`}
 												>
 													Ver detalhes
-												</a>
+												</Link>
 											</Td>
 										</Tr>
 									);
