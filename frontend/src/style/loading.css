@@ -1,0 +1,32 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  animation: is-rotating 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: rgb(18, 7, 88);
+  height: 80px;
+  width: 80px;
+}
+
+span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgb(18, 7, 88);
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}
+h1 {
+  text-align: center;
+}
