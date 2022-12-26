@@ -1,5 +1,7 @@
-import { React } from "react";
+import { React, useState, useContext, useEffect } from "react";
 import "../style/shared.css";
+import { PatientsContext } from "../context/PatientsContext";
+import { useLocation } from "react-router-dom";
 
 import {
 	Box,
@@ -14,6 +16,46 @@ import {
 } from "@chakra-ui/react";
 
 function DetailsPage() {
+	const { dataPatients } = useContext(PatientsContext);
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [cpf, setCpf] = useState("");
+	const [phone, setPhone] = useState("");
+	const [birthDate, setBirthDate] = useState("");
+	const [adress, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [status, setStatus] = useState("Ativo");
+	const [genre, setGenre] = useState("Masculino");
+	const [patientDetailsById, setPatientDetailsById] = useState([]);
+
+	const { pathname } = useLocation();
+	const patientId = pathname.split("/")[2];
+	// console.log("ID DA URL", patientId);
+
+	useEffect(() => {
+		const [patientById] = dataPatients.filter(
+			(patient) => patient.id == patientId
+		);
+
+		if (patientById !== undefined) {
+			setName(patientById.nome);
+			setEmail(patientById.email);
+			setCpf(patientById.cpf);
+			setPhone(patientById.telefone);
+			setBirthDate(patientById.dataDeNascimento);
+			setAddress(patientById.endereco);
+			setCity(patientById.cidade);
+			setStatus(patientById.status);
+			setGenre(patientById.genero);
+
+			console.log("PACIENTE POR ID", patientById);
+			setPatientDetailsById(patientById);
+		} else {
+			console.log("PACIENTE POR ID", patientById);
+			setPatientDetailsById(patientById);
+		}
+	}, [dataPatients]);
+
 	return (
 		<>
 			<h1 className="header">Detalhes do Paciente</h1>
