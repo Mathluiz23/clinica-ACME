@@ -7,13 +7,14 @@ function PatientsContextProvider({ children }) {
 	const [dataPatients, setDataPatients] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [patientsFiltered, setPatientsFiltered] = useState([]);
+	// const [dataLocalStorage, setDataLocalStorage] = useState([]);
 
 	useEffect(() => {
 		const exists = localStorage.getItem("patients");
 		if (exists) {
 			setTimeout(() => {
-				const json = JSON.parse(exists);
-				setDataPatients(json);
+				const dataLocalStorage = JSON.parse(exists);
+				setDataPatients(dataLocalStorage);
 				setIsLoading(false);
 			}, 2000);
 		} else {
