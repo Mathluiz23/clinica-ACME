@@ -28,7 +28,7 @@ function Patients() {
 							? patientsFiltered.map((patient) => {
 									return (
 										<Tr key={patient.id}>
-											<Td>{patient.nome}</Td>
+											<Td>{patient.name}</Td>
 											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
 											<Td>
@@ -44,7 +44,7 @@ function Patients() {
 							: dataPatients.map((patient) => {
 									return (
 										<Tr key={patient.id}>
-											<Td>{patient.nome}</Td>
+											<Td>{patient.name}</Td>
 											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
 											<Td>

@@ -16,7 +16,7 @@ function MainPage() {
 		const filteredPatients = dataPatients.filter(
 			(patient) =>
 				patient.cpf === searchInput ||
-				patient.nome
+				patient.name
 					.toLowerCase()
 					.includes(searchInput.toLowerCase()) ||
 				patient.status.toLowerCase() === searchInput.toLowerCase()
