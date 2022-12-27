@@ -33,7 +33,8 @@ const FORM_STATE_EMPTY = {
 function RegisterPage() {
 	const { setDataPatients, dataPatients } = useContext(PatientsContext);
 	const [form, setForm] = useState(FORM_STATE_EMPTY);
-	const [isValid, setIsValid] = useState(false);
+	// const [isValid, setIsValid] = useState(false);
+	const [formValidation, setFormValidation] = useState({});
 
 	const handleOnChangeGenre = (value) => {
 		console.log(value);
@@ -52,43 +53,43 @@ function RegisterPage() {
 	};
 
 	function validateForm(newPatient) {
-		if (newPatient.name !== "") {
-			setIsValid(true);
-		} else {
-			setIsValid(false);
-			console.log("NOME VAZIO");
-		}
+		const isFormValid = () => {
+			let result = true;
+			let validationMessages = {};
 
-		if (newPatient.email !== "") {
-			setIsValid(true);
-		}
+			//Verificando se algum dos inputs está vazio
+			// eslint-disable-next-line array-callback-return
+			Object.keys(form).map((attributeName) => {
+				if (form[attributeName] === "") {
+					validationMessages[attributeName] = "Campo obrigatório!";
+					result = false;
+				}
+			});
 
-		if (
-			newPatient.cpf !== "" ||
-			newPatient.cpf.length === 11 ||
-			newPatient.cpf !== dataPatients.map((patient) => patient.cpf)
-		) {
-			setIsValid(true);
-		}
+			//Verificando se o CPF é válido
+			if (form.cpf.length !== 11) {
+				validationMessages.cpf = "CPF inválido!";
+				result = false;
+			}
 
-		if (newPatient.phone !== "") {
-			setIsValid(true);
-		}
+			// Verificando se o CPF já foi cadastrado
+			if (dataPatients.find((patient) => patient.cpf === form.cpf)) {
+				validationMessages.cpf = "CPF já cadastrado!";
+				result = false;
+			}
 
-		if (newPatient.birthDate === "") {
-			setIsValid(true);
-		}
+			setFormValidation(validationMessages);
+			return result;
+		};
 
-		if (newPatient.city === "") {
-			setIsValid(true);
-		}
+		const isValid = isFormValid();
 
 		if (isValid) {
 			const newData = [
 				...dataPatients,
 				...[
 					{
-						...newPatient,
+						...form,
 						id: dataPatients.length + 1,
 					},
 				],
