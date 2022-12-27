@@ -36,12 +36,7 @@ function DetailsPage() {
 		}
 	}, [patientId, dataPatients]);
 
-	// function handleEditPatient() {
-	// 	setIsEdit(true);
-	// }
-
 	const handleOnChangeGenre = (value) => {
-		// console.log(value);
 		setRegister({
 			...register,
 			genre: value,
@@ -59,7 +54,6 @@ function DetailsPage() {
 		let result = true;
 		let validationMessages = {};
 
-		//Verificando se algum dos inputs está vazio
 		for (const key in register) {
 			if (NON_REQUIRED_FIELDS.includes(key)) {
 				continue;
@@ -94,6 +88,10 @@ function DetailsPage() {
 				icon: "success",
 				confirmButtonText: "OK",
 				confirmButtonColor: "#2D9CDB",
+			}).then(function (result) {
+				if (result.value) {
+					window.location = "/";
+				}
 			});
 		}
 	}
