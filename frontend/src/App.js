@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import DetailsPage from "./pages/DetailsPage";
 import RegisterPage from "./pages/RegisterPage";
+import "./App.css";
 
 function App() {
 	return (
