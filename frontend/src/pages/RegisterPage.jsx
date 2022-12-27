@@ -32,15 +32,6 @@ const FORM_STATE_EMPTY = {
 
 function RegisterPage() {
 	const { setDataPatients, dataPatients } = useContext(PatientsContext);
-	// const [name, setName] = useState("");
-	// const [email, setEmail] = useState("");
-	// const [cpf, setCpf] = useState("");
-	// const [phone, setPhone] = useState("");
-	// const [birthDate, setBirthDate] = useState("");
-	// const [address, setAddress] = useState("");
-	// const [city, setCity] = useState("");
-	// const [status, setStatus] = useState("Ativo");
-	// const [genre, setGenre] = useState("Masculino");
 	const [form, setForm] = useState(FORM_STATE_EMPTY);
 	const [isValid, setIsValid] = useState(false);
 
@@ -93,7 +84,15 @@ function RegisterPage() {
 		}
 
 		if (isValid) {
-			const newData = [...dataPatients, ...[newPatient]];
+			const newData = [
+				...dataPatients,
+				...[
+					{
+						...newPatient,
+						id: dataPatients.length + 1,
+					},
+				],
+			];
 			localStorage.setItem("patients", JSON.stringify(newData));
 			setDataPatients(newData);
 		}
