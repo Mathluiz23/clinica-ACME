@@ -37,12 +37,12 @@ const PatientForm = ({
 								<Input
 									name="name"
 									variant="filled"
+									type="text"
 									placeholder="Informe o nome completo"
 									onChange={handleOnChange}
 									value={form.name}
 									disabled={isInputDisabled}
 								/>
-
 								<FormErrorMessage
 									errors={formValidation}
 									fieldName="name"
@@ -61,7 +61,7 @@ const PatientForm = ({
 								/>
 								<FormErrorMessage
 									errors={formValidation}
-									fieldName="name"
+									fieldName="email"
 								/>
 							</Box>
 						</HStack>
@@ -93,7 +93,7 @@ const PatientForm = ({
 									placeholder="000-000.000-00"
 									onChange={handleOnChange}
 									value={form.cpf}
-									disabled={isInputDisabled}
+									disabled={isEditForm}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
