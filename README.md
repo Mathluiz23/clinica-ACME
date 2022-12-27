@@ -1,4 +1,4 @@
-<h1 align="center"> clínica ACME </h1>
+<h1 align="center"> Clínica ACME </h1>
 
 ## 🖥️📱 Deploy
 Neste link você tem acesso ao projeto disponibilizado na web.
