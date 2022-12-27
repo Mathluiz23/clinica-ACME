@@ -26,7 +26,8 @@ function DetailsPage() {
 
 	const [isEdit, setIsEdit] = useState(false);
 
-	const [register, setRegister] = useState([]);
+	const [isUserValid, setIsUserValid] = useState(null);
+	const [register, setRegister] = useState({});
 	const [formValidation, setFormValidation] = useState({});
 
 	const { pathname } = useLocation();
@@ -38,22 +39,19 @@ function DetailsPage() {
 			(patient) => patient.id === +patientId
 		);
 
-		if (patientById !== undefined) {
-			const FORM_STATE_ACTUAL = {
-				name: patientById.name,
-				email: patientById.email,
-				cpf: patientById.cpf,
-				phone: patientById.phone,
-				birthDate: patientById.birthDate,
-				address: patientById.address,
-				city: patientById.city,
-				status: patientById.status,
-				genre: patientById.genre,
-			};
+		if (dataPatients.length) {
+			const currentPatient = dataPatients.find((patient) => {
+				return patient.id === +patientId;
+			});
 
-			setRegister(FORM_STATE_ACTUAL);
+			if (currentPatient) {
+				setRegister(currentPatient);
+				setIsUserValid(true);
+			} else {
+				setIsUserValid(false);
+			}
 		}
-	}, []);
+	}, [patientId, dataPatients]);
 
 	function handleEditPatient() {
 		setIsEdit(true);
@@ -144,6 +142,8 @@ function DetailsPage() {
 		<>
 			<h1 className="header">Detalhes do Paciente</h1>
 			<NavBar />
+
+			{isUserValid === false && <h1>Usuário não encontrado</h1>}
 
 			{isLoading ? (
 				<Loading />
