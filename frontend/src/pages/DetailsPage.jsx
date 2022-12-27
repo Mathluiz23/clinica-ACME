@@ -85,20 +85,6 @@ function DetailsPage() {
 			}
 		}
 
-		//Verificando se o CPF é válido
-		if (
-			register.cpf.length !== dataPatients.map((patient) => patient.cpf)
-		) {
-			result = false;
-			validationMessages.cpf = "CPF já cadastrado";
-		}
-
-		//Verificando se o telefone é válido
-		if (register.cpf.length !== 11) {
-			result = false;
-			validationMessages.phone = "CPF Inválido";
-		}
-
 		setFormValidation(validationMessages);
 		return result;
 	};
