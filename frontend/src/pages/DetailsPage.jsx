@@ -2,6 +2,7 @@ import { React, useState, useContext, useEffect } from "react";
 import "../style/shared.css";
 import { PatientsContext } from "../context/PatientsContext";
 import { useLocation } from "react-router-dom";
+import FormErrorMessage from "../components/ErrorMessage";
 
 import {
 	Box,
@@ -22,17 +23,11 @@ import NavBar from "../components/NavBar";
 function DetailsPage() {
 	const { dataPatients, isLoading, setDataPatients } =
 		useContext(PatientsContext);
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [cpf, setCpf] = useState("");
-	const [phone, setPhone] = useState("");
-	const [birthDate, setBirthDate] = useState("");
-	const [adress, setAddress] = useState("");
-	const [city, setCity] = useState("");
-	const [status, setStatus] = useState("Ativo");
-	const [genre, setGenre] = useState("Masculino");
-	const [patientDetailsById, setPatientDetailsById] = useState([]);
+
 	const [isEdit, setIsEdit] = useState(false);
+
+	const [register, setRegister] = useState([]);
+	const [formValidation, setFormValidation] = useState({});
 
 	const { pathname } = useLocation();
 	const patientId = pathname.split("/")[2];
@@ -40,71 +35,109 @@ function DetailsPage() {
 
 	useEffect(() => {
 		const [patientById] = dataPatients.filter(
-			(patient) => patient.id == patientId
+			(patient) => patient.id === +patientId
 		);
 
 		if (patientById !== undefined) {
-			setName(patientById.nome);
-			setEmail(patientById.email);
-			setCpf(patientById.cpf);
-			setPhone(patientById.telefone);
-			setBirthDate(patientById.dataDeNascimento);
-			setAddress(patientById.endereço);
-			setCity(patientById.cidade);
-			setStatus(patientById.status);
-			setGenre(patientById.genero);
+			const FORM_STATE_ACTUAL = {
+				name: patientById.name,
+				email: patientById.email,
+				cpf: patientById.cpf,
+				phone: patientById.phone,
+				birthDate: patientById.birthDate,
+				address: patientById.address,
+				city: patientById.city,
+				status: patientById.status,
+				genre: patientById.genre,
+			};
 
-			console.log("PACIENTE POR ID", patientById);
-			setPatientDetailsById(patientById);
-		} else {
-			console.log("PACIENTE POR ID", patientById);
-			setPatientDetailsById(patientById);
+			setRegister(FORM_STATE_ACTUAL);
 		}
-	}, [dataPatients]);
+	}, []);
 
 	function handleEditPatient() {
 		setIsEdit(true);
 	}
 
-	function handleUpdatePatient() {
-		if (name === "" || email === "" || cpf === "" || phone === "") {
-			alert("Preencha todos os campos!");
-		} else {
-			const [patientById] = dataPatients.filter(
-				(patient) => patient.id == patientId
-			);
+	const handleOnChangeGenre = (value) => {
+		// console.log(value);
+		setRegister({
+			...register,
+			genre: value,
+		});
+	};
 
-			const index = dataPatients.indexOf(patientById);
+	const handleOnChange = (event) => {
+		setRegister({
+			...register,
+			[event.target.name]: event.target.value,
+		});
+	};
 
-			const newPatient = {
-				id: patientById.id,
-				nome: name,
-				email: email,
-				cpf: cpf,
-				telefone: phone,
-				dataDeNascimento: birthDate,
-				endereço: adress,
-				cidade: city,
-				status: status,
-				genero: genre,
-			};
+	const isFormValid = () => {
+		let result = true;
+		let validationMessages = {};
 
-			const newDataPatients = [...dataPatients];
-			newDataPatients[index] = newPatient;
-
-			setDataPatients(newDataPatients);
-			localStorage.setItem("patients", JSON.stringify(newDataPatients));
+		//Verificando se algum dos inputs está vazio
+		for (const key in register) {
+			console.log(key, register, "KEEY E REGISTER AQUIIIII");
+			if (register[key] === "") {
+				result = false;
+				validationMessages[key] = "Campo Obrigatório";
+			}
 		}
 
-		setIsEdit(false);
+		//Verificando se o CPF é válido
+		if (
+			register.cpf.length !== dataPatients.map((patient) => patient.cpf)
+		) {
+			result = false;
+			validationMessages.cpf = "CPF já cadastrado";
+		}
 
-		Swal.fire({
-			position: "center",
-			icon: "success",
-			title: "Paciente atualizado com sucesso!",
-			showConfirmButton: false,
-			timer: 1500,
-		});
+		//Verificando se o telefone é válido
+		if (register.cpf.length !== 11) {
+			result = false;
+			validationMessages.phone = "CPF Inválido";
+		}
+
+		setFormValidation(validationMessages);
+		return result;
+	};
+
+	function handleUpdatePatient() {
+		if (isFormValid()) {
+			const [patientById] = dataPatients.filter(
+				(patient) => patient.id === +patientId
+			);
+
+			const patientIndex = dataPatients.indexOf(patientById);
+
+			const newPatients = [...dataPatients];
+
+			newPatients[patientIndex] = {
+				...newPatients[patientIndex],
+				name: register.name,
+				email: register.email,
+				cpf: register.cpf,
+				phone: register.phone,
+				birthDate: register.birthDate,
+				address: register.address,
+				city: register.city,
+				status: register.status,
+				genre: register.genre,
+			};
+
+			setDataPatients(newPatients);
+
+			Swal.fire({
+				title: "Paciente Atualizado com Sucesso!",
+				icon: "success",
+				confirmButtonText: "OK",
+				confirmButtonColor: "#2D9CDB",
+			});
+		}
+		setIsEdit(false);
 	}
 
 	return (
@@ -122,13 +155,15 @@ function DetailsPage() {
 								<Box className="box-form">
 									<FormLabel htmlFor="nome">Nome</FormLabel>
 									<Input
-										id="nome"
-										onChange={(event) => {
-											setName(event.target.value);
-										}}
-										value={name}
+										name="name"
+										onChange={handleOnChange}
+										value={register.name}
 										disabled={isEdit ? false : true}
 										isRequired={true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 								<Box className="box-form">
@@ -137,13 +172,15 @@ function DetailsPage() {
 									</FormLabel>
 									<Input
 										isRequired={true}
-										id="email"
+										name="email"
 										type="email"
-										onChange={(event) => {
-											setEmail(event.target.value);
-										}}
-										value={email}
+										onChange={handleOnChange}
+										value={register.email}
 										disabled={isEdit ? false : true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 							</HStack>
@@ -156,74 +193,81 @@ function DetailsPage() {
 									<Input
 										id="nasc"
 										type="text"
-										onChange={(event) => {
-											setBirthDate(event.target.value);
-										}}
-										value={birthDate}
+										onChange={handleOnChange}
+										value={register.birthDate}
 										disabled={isEdit ? false : true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 								<Box className="box-form">
 									<FormLabel htmlFor="cpf">CPF</FormLabel>
 									<Input
-										id="cpf"
+										name="cpf"
 										type="number"
-										onChange={(event) => {
-											setCpf(event.target.value);
-										}}
-										value={cpf}
+										onChange={handleOnChange}
+										value={register.cpf}
 										disabled={isEdit ? false : true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 							</HStack>
 
 							<HStack>
 								<Box className="box-form">
-									<FormLabel htmlFor="endereco">
+									<FormLabel htmlFor="address">
 										Endereço
 									</FormLabel>
 									<Input
-										id="endereco"
-										onChange={(event) => {
-											setAddress(event.target.value);
-										}}
-										value={adress}
+										id="address"
+										onChange={handleOnChange}
+										value={register.adress}
 										disabled={isEdit ? false : true}
 									/>
 								</Box>
 								<Box className="box-form">
-									<FormLabel htmlFor="cidade">
-										Cidade
-									</FormLabel>
+									<FormLabel htmlFor="city">Cidade</FormLabel>
 									<Input
-										id="cidade"
-										onChange={(event) => {
-											setCity(event.target.value);
-										}}
-										value={city}
+										name="city"
+										onChange={handleOnChange}
+										value={register.city}
 										disabled={isEdit ? false : true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 							</HStack>
 
 							<HStack>
 								<Box className="box-form">
-									<FormLabel htmlFor="cel">Celular</FormLabel>
+									<FormLabel htmlFor="phone">
+										Celular
+									</FormLabel>
 									<Input
-										id="cel"
+										name="phone"
 										type="number"
-										onChange={(event) => {
-											setPhone(event.target.value);
-										}}
-										value={phone}
+										onChange={handleOnChange}
+										value={register.phone}
 										disabled={isEdit ? false : true}
+									/>
+									<FormErrorMessage
+										errors={formValidation}
+										fieldName="name"
 									/>
 								</Box>
 								<Box className="box-form">
 									<FormLabel>Sexo</FormLabel>
 									<RadioGroup
-										onChange={setGenre}
-										value={genre}
+										name="genre"
+										onChange={handleOnChangeGenre}
+										value={register.genre}
 										disabled={isEdit ? false : true}
 									>
 										<HStack>
@@ -245,11 +289,10 @@ function DetailsPage() {
 										Status
 									</FormLabel>
 									<Select
+										name="status"
 										variant="flushed"
-										onChange={(event) => {
-											setStatus(event.target.value);
-										}}
-										value={status}
+										onChange={handleOnChange}
+										value={register.status}
 										disabled={isEdit ? false : true}
 									>
 										<option value="Ativo">Ativo</option>
