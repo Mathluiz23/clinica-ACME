@@ -15,16 +15,22 @@ import {
 	Button,
 	Select,
 } from "@chakra-ui/react";
-import NavBar from "../components/NavBar";
 import FormErrorMessage from "../components/Form/ErrorMessage/ErrorMessage";
 
-function PatientForm() {
+const PatientForm = ({
+	form,
+	handleOnChange,
+	formValidation,
+	handleOnChangeGenre,
+	handleSubmitForm,
+	isEditForm = false,
+}) => {
+	const [isEditing, setIsEditing] = useState(false);
+
+	const isInputDisabled = isEditForm && !isEditing;
+
 	return (
 		<>
-			<Center className="header" as="header">
-				Cadastro de Pacientes
-			</Center>
-			<NavBar />
 			<Box className="box-form">
 				<Flex className="form-container">
 					<FormControl className="form">
@@ -37,6 +43,7 @@ function PatientForm() {
 									placeholder="Informe o nome completo"
 									onChange={handleOnChange}
 									value={form.name}
+									disabled={isInputDisabled}
 								/>
 
 								<FormErrorMessage
@@ -53,6 +60,7 @@ function PatientForm() {
 									placeholder="exemplo@interprocess.com"
 									onChange={handleOnChange}
 									value={form.email}
+									disabled={isInputDisabled}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
@@ -72,6 +80,7 @@ function PatientForm() {
 									type="date"
 									onChange={handleOnChange}
 									value={form.birthDate}
+									disabled={isInputDisabled}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
@@ -87,6 +96,7 @@ function PatientForm() {
 									placeholder="000-000.000-00"
 									onChange={handleOnChange}
 									value={form.cpf}
+									disabled={isInputDisabled}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
@@ -106,6 +116,7 @@ function PatientForm() {
 									placeholder="Rua Brasil 1"
 									onChange={handleOnChange}
 									value={form.address}
+									disabled={isInputDisabled}
 								/>
 							</Box>
 							<Box className="box-form">
@@ -116,6 +127,7 @@ function PatientForm() {
 									placeholder="Porto Alegre"
 									onChange={handleOnChange}
 									value={form.city}
+									disabled={isInputDisabled}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
@@ -134,6 +146,7 @@ function PatientForm() {
 									placeholder="(51) 99999-9999"
 									onChange={handleOnChange}
 									value={form.phone}
+									disabled={isInputDisabled}
 								/>
 								<FormErrorMessage
 									errors={formValidation}
@@ -146,6 +159,7 @@ function PatientForm() {
 									name="genre"
 									onChange={handleOnChangeGenre}
 									value={form.genre}
+									disabled={isInputDisabled}
 								>
 									<HStack>
 										<Radio value="Masculino">
@@ -166,6 +180,7 @@ function PatientForm() {
 									variant="flushed"
 									onChange={handleOnChange}
 									value={form.status}
+									disabled={isInputDisabled}
 								>
 									<option value="Ativo">Ativo</option>
 									<option value="Inativo">Inativo</option>
@@ -173,22 +188,48 @@ function PatientForm() {
 							</Box>
 						</HStack>
 
-						<HStack>
-							<Button
-								className="submit-button"
-								type="button"
-								colorScheme="rgb(18, 7, 88)"
-								isDisabled={false}
-								onClick={handleSubmitForm}
-							>
-								Enviar
-							</Button>
-						</HStack>
+						{!isEditForm ? (
+							<HStack>
+								<Button
+									className="submit-button"
+									type="button"
+									colorScheme="rgb(18, 7, 88)"
+									isDisabled={false}
+									onClick={handleSubmitForm}
+								>
+									Enviar
+								</Button>
+							</HStack>
+						) : (
+							<HStack>
+								<Button
+									className="register-button"
+									type="button"
+									onClick={() => {
+										setIsEditing(!isEditing);
+									}}
+									colorScheme="blue"
+									disabled={isEditing}
+								>
+									Editar
+								</Button>
+
+								<Button
+									className="register-button"
+									type="button"
+									onClick={handleSubmitForm}
+									colorScheme="blue"
+									disabled={!isEditing}
+								>
+									Salvar
+								</Button>
+							</HStack>
+						)}
 					</FormControl>
 				</Flex>
 			</Box>
 		</>
 	);
-}
+};
 
 export default PatientForm;
