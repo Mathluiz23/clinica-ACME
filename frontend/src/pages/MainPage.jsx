@@ -15,7 +15,7 @@ function MainPage() {
 	function handleClickFilter() {
 		const filteredPatients = dataPatients.filter(
 			(patient) =>
-				patient.CPF === searchInput ||
+				patient.cpf === searchInput ||
 				patient.nome
 					.toLowerCase()
 					.includes(searchInput.toLowerCase()) ||
