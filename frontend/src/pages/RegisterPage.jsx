@@ -25,14 +25,14 @@ function RegisterPage() {
 	const [cpf, setCpf] = useState("");
 	const [phone, setPhone] = useState("");
 	const [birthDate, setBirthDate] = useState("");
-	const [adress, setAddress] = useState("");
+	const [address, setAddress] = useState("");
 	const [city, setCity] = useState("");
 	const [status, setStatus] = useState("Ativo");
 	const [genre, setGenre] = useState("Masculino");
 	const [isValid, setIsValid] = useState(false);
 
 	function validateForm(newPatient) {
-		if (newPatient[0].nome !== "") {
+		if (newPatient[0].name !== "") {
 			setIsValid(true);
 		} else {
 			setIsValid(false);
@@ -51,15 +51,15 @@ function RegisterPage() {
 			setIsValid(true);
 		}
 
-		if (newPatient[0].telefone !== "") {
+		if (newPatient[0].phone !== "") {
 			setIsValid(true);
 		}
 
-		if (newPatient[0].dataDeNascimento === "") {
+		if (newPatient[0].birthDate === "") {
 			setIsValid(true);
 		}
 
-		if (newPatient[0].cidade === "") {
+		if (newPatient[0].city === "") {
 			setIsValid(true);
 		}
 
@@ -91,15 +91,15 @@ function RegisterPage() {
 		const newPatient = [
 			{
 				id: dataPatients.length + 1,
-				nome: name,
+				name: name,
 				email: email,
 				cpf: cpf,
-				telefone: phone,
-				dataDeNascimento: birthDate,
-				endereco: adress,
-				cidade: city,
+				phone: phone,
+				birthDate: birthDate,
+				address: address,
+				city: city,
 				status: status,
-				genero: genre,
+				genre: genre,
 			},
 		];
 
@@ -117,9 +117,10 @@ function RegisterPage() {
 					<FormControl className="form">
 						<HStack>
 							<Box className="box-form">
-								<FormLabel htmlFor="nome">Nome</FormLabel>
+								<FormLabel htmlFor="name">Nome</FormLabel>
 								<Input
-									id="nome"
+									id="name"
+									name="name"
 									variant="filled"
 									placeholder="Informe o nome completo"
 									onChange={(event) => {
@@ -135,6 +136,7 @@ function RegisterPage() {
 								<FormLabel htmlFor="email">E-mail</FormLabel>
 								<Input
 									id="email"
+									name="email"
 									variant="filled"
 									type="email"
 									placeholder="exemplo@interprocess.com"
@@ -148,11 +150,12 @@ function RegisterPage() {
 
 						<HStack>
 							<Box className="box-form">
-								<FormLabel htmlFor="nasc">
+								<FormLabel htmlFor="birthDate">
 									Data de Nascimento
 								</FormLabel>
 								<Input
-									id="nasc"
+									id="birthDate"
+									name="birthDate"
 									variant="filled"
 									type="date"
 									onChange={(event) => {
@@ -165,6 +168,7 @@ function RegisterPage() {
 								<FormLabel htmlFor="cpf">CPF</FormLabel>
 								<Input
 									id="cpf"
+									name="cpf"
 									variant="filled"
 									type="number"
 									placeholder="000-000.000-00"
@@ -178,23 +182,25 @@ function RegisterPage() {
 
 						<HStack>
 							<Box className="box-form">
-								<FormLabel htmlFor="endereco">
+								<FormLabel htmlFor="address">
 									Endereço
 								</FormLabel>
 								<Input
-									id="endereco"
+									id="address"
+									name="address"
 									variant="filled"
 									placeholder="Rua Brasil 1"
 									onChange={(event) => {
 										setAddress(event.target.value);
 									}}
-									value={adress}
+									value={address}
 								/>
 							</Box>
 							<Box className="box-form">
-								<FormLabel htmlFor="cidade">Cidade</FormLabel>
+								<FormLabel htmlFor="city">Cidade</FormLabel>
 								<Input
-									id="cidade"
+									id="city"
+									name="city"
 									variant="filled"
 									placeholder="Porto Alegre"
 									onChange={(event) => {
@@ -207,9 +213,10 @@ function RegisterPage() {
 
 						<HStack>
 							<Box className="box-form">
-								<FormLabel htmlFor="cel">Celular</FormLabel>
+								<FormLabel htmlFor="phone">Celular</FormLabel>
 								<Input
-									id="cel"
+									id="phone"
+									name="phone"
 									variant="filled"
 									type="number"
 									placeholder="(51) 99999-9999"
@@ -221,7 +228,11 @@ function RegisterPage() {
 							</Box>
 							<Box className="box-form">
 								<FormLabel>Sexo</FormLabel>
-								<RadioGroup onChange={setGenre} value={genre}>
+								<RadioGroup
+									name="genre"
+									onChange={setGenre}
+									value={genre}
+								>
 									<HStack>
 										<Radio value="Masculino">
 											Masculino
@@ -259,7 +270,7 @@ function RegisterPage() {
 									email &&
 									birthDate &&
 									cpf &&
-									adress &&
+									address &&
 									city &&
 									phone &&
 									genre &&
