@@ -63,6 +63,11 @@ function DetailsPage() {
 			}
 		}
 
+		if (!register.email.includes("@" && ".com")) {
+			validationMessages.email = "Email inválido!";
+			result = false;
+		}
+
 		setFormValidation(validationMessages);
 		return result;
 	};

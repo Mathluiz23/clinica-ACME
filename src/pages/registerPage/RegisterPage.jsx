@@ -39,6 +39,7 @@ function RegisterPage() {
 			...form,
 			[event.target.name]: event.target.value,
 		});
+		console.log("FOORM", form);
 	};
 
 	const isFormValid = () => {
@@ -46,17 +47,21 @@ function RegisterPage() {
 		let validationMessages = {};
 
 		//Verificando se algum dos inputs está vazio
-		Object.keys(form)
-			.filter((attributeName) => {
-				return !NON_REQUIRED_FIELDS.includes(attributeName);
-			})
-			// eslint-disable-next-line array-callback-return
-			.map((attributeName) => {
-				if (form[attributeName] === "") {
-					validationMessages[attributeName] = "Campo obrigatório!";
-					result = false;
-				}
-			});
+		Object.keys(form).forEach((key) => {
+			if (NON_REQUIRED_FIELDS.includes(key)) {
+				return;
+			}
+			if (form[key] === "") {
+				validationMessages[key] = "Campo obrigatório!";
+				result = false;
+			}
+		});
+
+		// Verificando se o email é válido
+		if (!form.email.includes("@" && ".com")) {
+			validationMessages.email = "Email inválido!";
+			result = false;
+		}
 
 		//Verificando se o CPF é válido
 		if (form.cpf.length !== 11) {
