@@ -17,6 +17,7 @@ import {
 	Select,
 } from "@chakra-ui/react";
 import NavBar from "../components/NavBar";
+import FormErrorMessage from "../components/ErrorMessage";
 
 const FORM_STATE_EMPTY = {
 	name: "",
@@ -33,11 +34,11 @@ const FORM_STATE_EMPTY = {
 function RegisterPage() {
 	const { setDataPatients, dataPatients } = useContext(PatientsContext);
 	const [form, setForm] = useState(FORM_STATE_EMPTY);
-	// const [isValid, setIsValid] = useState(false);
 	const [formValidation, setFormValidation] = useState({});
+	console.log(formValidation);
 
 	const handleOnChangeGenre = (value) => {
-		console.log(value);
+		// console.log(value);
 		setForm({
 			...form,
 			genre: value,
@@ -45,46 +46,43 @@ function RegisterPage() {
 	};
 
 	const handleOnChange = (event) => {
-		console.log(event);
+		// console.log(event);
 		setForm({
 			...form,
 			[event.target.name]: event.target.value,
 		});
 	};
 
-	function validateForm(newPatient) {
-		const isFormValid = () => {
-			let result = true;
-			let validationMessages = {};
+	const isFormValid = () => {
+		let result = true;
+		let validationMessages = {};
 
-			//Verificando se algum dos inputs está vazio
-			// eslint-disable-next-line array-callback-return
-			Object.keys(form).map((attributeName) => {
-				if (form[attributeName] === "") {
-					validationMessages[attributeName] = "Campo obrigatório!";
-					result = false;
-				}
-			});
-
-			//Verificando se o CPF é válido
-			if (form.cpf.length !== 11) {
-				validationMessages.cpf = "CPF inválido!";
+		//Verificando se algum dos inputs está vazio
+		Object.keys(form).map((attributeName) => {
+			if (form[attributeName] === "") {
 				result = false;
+				validationMessages[attributeName] = "Campo obrigatório!";
 			}
+		});
 
-			// Verificando se o CPF já foi cadastrado
-			if (dataPatients.find((patient) => patient.cpf === form.cpf)) {
-				validationMessages.cpf = "CPF já cadastrado!";
-				result = false;
-			}
+		//Verificando se o CPF é válido
+		if (form.cpf.length !== 11) {
+			validationMessages.cpf = "CPF inválido!";
+			result = false;
+		}
 
-			setFormValidation(validationMessages);
-			return result;
-		};
+		// Verificando se o CPF já foi cadastrado
+		if (dataPatients.find((patient) => patient.cpf === form.cpf)) {
+			validationMessages.cpf = "CPF já cadastrado!";
+			result = false;
+		}
 
-		const isValid = isFormValid();
+		setFormValidation(validationMessages);
+		return result;
+	};
 
-		if (isValid) {
+	function handleSubmitForm() {
+		if (isFormValid()) {
 			const newData = [
 				...dataPatients,
 				...[
@@ -96,23 +94,15 @@ function RegisterPage() {
 			];
 			localStorage.setItem("patients", JSON.stringify(newData));
 			setDataPatients(newData);
-		}
+			setForm(FORM_STATE_EMPTY);
 
-		if (isValid) {
 			Swal.fire({
 				title: "Paciente Cadastrado com Sucesso!",
 				icon: "success",
 				confirmButtonText: "OK",
 				confirmButtonColor: "#2D9CDB",
 			});
-
-			setForm(FORM_STATE_EMPTY);
 		}
-	}
-
-	function handleSubmitForm() {
-		// id: dataPatients.length + 1,
-		validateForm(form);
 	}
 
 	return (
@@ -128,27 +118,31 @@ function RegisterPage() {
 							<Box className="box-form">
 								<FormLabel htmlFor="name">Nome</FormLabel>
 								<Input
-									id="name"
 									name="name"
 									variant="filled"
 									placeholder="Informe o nome completo"
 									onChange={handleOnChange}
 									value={form.name}
 								/>
-								{/* {name === " " ? (
-									<p>{`* Por favor informe um nome`}</p>
-								) : null} */}
+
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="name"
+								/>
 							</Box>
 							<Box className="box-form">
 								<FormLabel htmlFor="email">E-mail</FormLabel>
 								<Input
-									id="email"
 									name="email"
 									variant="filled"
 									type="email"
 									placeholder="exemplo@interprocess.com"
 									onChange={handleOnChange}
 									value={form.email}
+								/>
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="name"
 								/>
 							</Box>
 						</HStack>
@@ -159,24 +153,30 @@ function RegisterPage() {
 									Data de Nascimento
 								</FormLabel>
 								<Input
-									id="birthDate"
 									name="birthDate"
 									variant="filled"
 									type="date"
 									onChange={handleOnChange}
 									value={form.birthDate}
 								/>
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="birthDate"
+								/>
 							</Box>
 							<Box className="box-form">
 								<FormLabel htmlFor="cpf">CPF</FormLabel>
 								<Input
-									id="cpf"
 									name="cpf"
 									variant="filled"
 									type="number"
 									placeholder="000-000.000-00"
 									onChange={handleOnChange}
 									value={form.cpf}
+								/>
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="cpf"
 								/>
 							</Box>
 						</HStack>
@@ -187,7 +187,6 @@ function RegisterPage() {
 									Endereço
 								</FormLabel>
 								<Input
-									id="address"
 									name="address"
 									variant="filled"
 									placeholder="Rua Brasil 1"
@@ -198,12 +197,15 @@ function RegisterPage() {
 							<Box className="box-form">
 								<FormLabel htmlFor="city">Cidade</FormLabel>
 								<Input
-									id="city"
 									name="city"
 									variant="filled"
 									placeholder="Porto Alegre"
 									onChange={handleOnChange}
 									value={form.city}
+								/>
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="city"
 								/>
 							</Box>
 						</HStack>
@@ -212,13 +214,16 @@ function RegisterPage() {
 							<Box className="box-form">
 								<FormLabel htmlFor="phone">Celular</FormLabel>
 								<Input
-									id="phone"
 									name="phone"
 									variant="filled"
 									type="number"
 									placeholder="(51) 99999-9999"
 									onChange={handleOnChange}
 									value={form.phone}
+								/>
+								<FormErrorMessage
+									errors={formValidation}
+									fieldName="phone"
 								/>
 							</Box>
 							<Box className="box-form">
@@ -243,6 +248,7 @@ function RegisterPage() {
 							<Box className="box-form">
 								<FormLabel htmlFor="status">Status</FormLabel>
 								<Select
+									name="status"
 									variant="flushed"
 									onChange={handleOnChange}
 									value={form.status}
