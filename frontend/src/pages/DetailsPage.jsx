@@ -99,19 +99,9 @@ function DetailsPage() {
 
 			const newPatients = [...dataPatients];
 
-			newPatients[patientIndex] = {
-				...newPatients[patientIndex],
-				name: register.name,
-				email: register.email,
-				cpf: register.cpf,
-				phone: register.phone,
-				birthDate: register.birthDate,
-				address: register.address,
-				city: register.city,
-				status: register.status,
-				genre: register.genre,
-			};
+			newPatients[patientIndex] = register;
 
+			localStorage.setItem("patients", JSON.stringify(newPatients));
 			setDataPatients(newPatients);
 
 			Swal.fire({
@@ -195,7 +185,7 @@ function DetailsPage() {
 										type="number"
 										onChange={handleOnChange}
 										value={register.cpf}
-										disabled={isEdit ? false : true}
+										disabled={true}
 									/>
 									<FormErrorMessage
 										errors={formValidation}
@@ -292,6 +282,7 @@ function DetailsPage() {
 									type="button"
 									onClick={handleEditPatient}
 									colorScheme="blue"
+									disabled={isEdit}
 								>
 									Editar
 								</Button>
@@ -301,6 +292,7 @@ function DetailsPage() {
 									type="button"
 									onClick={handleUpdatePatient}
 									colorScheme="blue"
+									disabled={!isEdit}
 								>
 									Salvar
 								</Button>
