@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+<h1 align="center"> clínica ACME </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🖥️📱 Deploy
+Neste link você tem acesso ao projeto disponibilizado na web.
 
-## Available Scripts
+click aqui: *REALIZAR DEPLOY E DISPONIBILIZAR LINK
 
-In the project directory, you can run:
+## 💻 Projeto
 
-### `npm start`
+Este projeto consiste em uma aplicação de  consultar e cadastrar pacientes. Onde será possível:
+- Visualizar os pacientes cadastrados através de uma tabela.
+- Filtrar pacientes por nome, CPF ou status.
+- Cadastrar novos pacientes.
+- Editar o cadastro de um paciente.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<details>
+  <summary><strong>Tela Principal</strong></summary><br />
+  
+  ### Na tela principal você pode visualizar tabela com todos os pacientes cadastrados, contendo informações resumidas sobre cada um deles com:
+- Nome
+- CPF
+- Status
 
-### `npm test`
+ ### Pesquisar pacientes cadastrados, filtrando por nome, CPF e status.
+ ### Botão de cadastrar pacientes, levará para uma página de cadastro.
+ ### Clicando em ver detalhes na linha da tabela de cada paciente, levará para uma página de detahes de cada paciente, contendo todas as informações cadastradas.
+ 
+ 
+ ## ⏯️ Demonstração
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<div align="center">
+    <img alt="gif de apresentação" src=""/>
+</div>
 
-### `npm run build`
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+  <summary><strong>Tela de Cadastro</strong></summary><br />
+  
+  ### Nesta tela você poderá realizar o cadastro de um novo paciente. Na página inicial, clicando em cadastrar paciente, você é encaminhado para esta página, onde há um formulário com os seguintes campos para preenchimento:
+- Nome (obrigatório)
+- Email (obrigatório)
+- Data de Nascimento (obrigatório)
+- CPF (obrigatório)
+- Endereço (opcional)
+- Cidade (obrigatório)
+- Celular (obrigatório)
+- Sexo (obrigatório)
+- Status (obrigatório)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  Após o preenchimento das informações obrigatórias, será possível cadastrar o paciente clicando no botão de Enviar. 
+  Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadastrado com sucesso` , caso algum dos campos seja inválido ou o CPF informado já tenha sido cadastrado, você receberá uma `mensagem de erro` no campo referente a informação.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### ⏯️ Demonstração
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<div align="center">
+    <img alt="gif de apresentação" src=""/>
+</div>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+</details>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<details>
+  <summary><strong>Tela de Detalhes</strong></summary><br />
+  
+  ### Nesta tela você poderá visualizar as informações completas de cada paciente:
+- Nome
+- Email
+- Data de Nascimento
+- CPF
+- Endereço
+- Cidade
+- Celular
+- Sexo
+- Status
 
-### Code Splitting
+### Também será possível editar o cadastro do paciente. Clicando no botão editar, irá habilitar os campos para modificar as informações. Após feita a alteração, para salvar as alterações, basta clicar no botão salvar(você receberá uma mensagem de confirmação que o paciente foi atualizado).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### ⏯️ Demonstração
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<div align="center">
+    <img alt="gif de apresentação" src=""/>
+</div>
 
-### Making a Progressive Web App
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### 👨‍💻 Ações do usuário:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ - Filtrar pacientes.
+ 
+ - Cadastrar Pacientes.
+ 
+ - Editar Pacientes.
+ 
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ⏯️ Demonstração
+
+<div align="center">
+    <img alt="gif de apresentação" src=""/>
+</div>
+
+## 👨‍🔧 Habilidades
+
+Neste projeto, foram utilizadas as seguintes habilidades:
+
+- Utilizado `React`
+
+- Utilizado os ciclos de vida de um componente React;
+
+- Utilizado `Hook useEffect` para lidar com efeitos, neste projeto foi utilizado como componentDidUpdate, atualizando a cada transação realizada.
+
+- Utilizar `Hook useState` para lidar com mudanças de estado da aplicação;
+
+- Utilizar as funcionalidade `setItem e getItem` do localStorage, para adicionar, recuperar ou excluir dados localmente.
+
+- Utilizado a biblioteca externa `Chakra-ui` para implementação estilizada da estrutura do projeto.
+
+- Utilizado a biblioteca externa `sweetalert2` para gerar alertar personalizados quando alguma informação está incorreta.
+
+
+
+## 👨‍💻 Rodando o projeto localmente
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:Mathluiz23/clinica-ACME.git
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd clinica-ACME
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd frontend
+```
+
+Inicie o projeto, 
+
+```bash
+  npm start
+```
