@@ -1,11 +1,8 @@
-import React, { useState, useContext } from "react";
-import { PatientsContext } from "../context/PatientsContext";
-import "../style/PatientForm.css";
+import React, { useState } from "react";
 
 import {
 	Flex,
 	Box,
-	Center,
 	FormControl,
 	Input,
 	FormLabel,
@@ -15,7 +12,7 @@ import {
 	Button,
 	Select,
 } from "@chakra-ui/react";
-import FormErrorMessage from "../components/Form/ErrorMessage/ErrorMessage";
+import FormErrorMessage from "./ErrorMessage";
 
 const PatientForm = ({
 	form,

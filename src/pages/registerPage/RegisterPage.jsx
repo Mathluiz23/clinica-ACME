@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { PatientsContext } from "../context/PatientsContext";
+import { PatientsContext } from "../../context/PatientsContext";
 import Swal from "sweetalert2";
-import "../style/registerPage.css";
+import "./registerPage.css";
 
 import { Center } from "@chakra-ui/react";
-import NavBar from "../components/NavBar";
-import PatientForm from "../components/Form/PatientForm";
+import NavBar from "../../components/sideBar/SideBar";
+import PatientForm from "../../components/Form/PatientForm";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -50,6 +50,7 @@ function RegisterPage() {
 			.filter((attributeName) => {
 				return !NON_REQUIRED_FIELDS.includes(attributeName);
 			})
+			// eslint-disable-next-line array-callback-return
 			.map((attributeName) => {
 				if (form[attributeName] === "") {
 					validationMessages[attributeName] = "Campo obrigatório!";

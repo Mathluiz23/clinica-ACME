@@ -1,8 +1,7 @@
 import { React } from "react";
-import { Link } from "react-router-dom";
-import "../style/shared.css";
+import "./sideBar.css";
 
-function NavBar() {
+function SideBar() {
 	return (
 		<>
 			<nav className="side-bar">
@@ -22,4 +21,4 @@ function NavBar() {
 	);
 }
 
-export default NavBar;
+export default SideBar;

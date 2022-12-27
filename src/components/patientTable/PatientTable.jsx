@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { PatientsContext } from "../context/PatientsContext";
+import { PatientsContext } from "../../context/PatientsContext";
 import { Link } from "react-router-dom";
-import Loading from "./Loading";
+import Loading from "../loading/Loading";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import "../style/patients.css";
+import "./patientTable.css";
 
-function Patients() {
+function PatientTable() {
 	const { dataPatients, isLoading, patientsFiltered } =
 		useContext(PatientsContext);
 
@@ -64,4 +64,4 @@ function Patients() {
 	);
 }
 
-export default Patients;
+export default PatientTable;

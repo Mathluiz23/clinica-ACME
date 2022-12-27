@@ -1,12 +1,11 @@
 import { React, useState, useContext, useEffect } from "react";
-import "../style/shared.css";
-import { PatientsContext } from "../context/PatientsContext";
+import { PatientsContext } from "../../context/PatientsContext";
 import { useLocation } from "react-router-dom";
 
-import Loading from "../components/Loading";
+import Loading from "../../components/loading/Loading";
 import Swal from "sweetalert2";
-import NavBar from "../components/NavBar";
-import PatientForm from "../components/Form/PatientForm";
+import SideBar from "../../components/sideBar/SideBar";
+import PatientForm from "../../components/Form/PatientForm";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -99,7 +98,7 @@ function DetailsPage() {
 	return (
 		<>
 			<h1 className="header">Detalhes do Paciente</h1>
-			<NavBar />
+			<SideBar />
 
 			{isUserValid === false && <h1>Usuário não encontrado</h1>}
 

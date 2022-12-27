@@ -1,11 +1,10 @@
 import { React, useState, useContext } from "react";
-import NavBar from "../components/NavBar";
-import Patients from "../components/Patients";
-import { PatientsContext } from "../context/PatientsContext";
+import SideBar from "../../components/sideBar/SideBar";
+import Patients from "../../components/patientTable/PatientTable";
+import { PatientsContext } from "../../context/PatientsContext";
 import { useNavigate } from "react-router-dom";
 import { Button, FormLabel, Box, Input, Flex } from "@chakra-ui/react";
-import "../style/mainPage.css";
-import "../style/shared.css";
+import "../../style/shared.css";
 
 function MainPage() {
 	const [searchInput, setSearchInput] = useState("");
@@ -32,7 +31,7 @@ function MainPage() {
 		<>
 			<div className="main-page-container">
 				<header className="header">Clínica ACME</header>
-				<NavBar />
+				<SideBar />
 
 				<Flex className="search-container">
 					<Box className="box-form">
