@@ -27,7 +27,7 @@ function Patients() {
 						{patientsFiltered.length > 0
 							? patientsFiltered.map((patient) => {
 									return (
-										<Tr key={patient}>
+										<Tr key={patient.id}>
 											<Td>{patient.nome}</Td>
 											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
@@ -43,7 +43,7 @@ function Patients() {
 							  })
 							: dataPatients.map((patient) => {
 									return (
-										<Tr key={patient}>
+										<Tr key={patient.id}>
 											<Td>{patient.nome}</Td>
 											<Td>{patient.cpf}</Td>
 											<Td>{patient.status}</Td>
