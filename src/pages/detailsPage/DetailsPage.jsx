@@ -11,7 +11,7 @@ import { Center } from "@chakra-ui/react";
 const NON_REQUIRED_FIELDS = ["address"];
 
 function DetailsPage() {
-	const { dataPatients, isLoading, setDataPatients } =
+	const { dataPatients, isLoading, setDataPatients, setIsLoading } =
 		useContext(PatientsContext);
 
 	const [isUserValid, setIsUserValid] = useState(null);
@@ -20,6 +20,13 @@ function DetailsPage() {
 
 	const { pathname } = useLocation();
 	const patientId = pathname.split("/")[2];
+
+	useEffect(() => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 2000);
+	}, []);
 
 	useEffect(() => {
 		if (dataPatients.length) {

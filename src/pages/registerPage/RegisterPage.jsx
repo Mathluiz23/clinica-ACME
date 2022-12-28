@@ -1,10 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { PatientsContext } from "../../context/PatientsContext";
 import Swal from "sweetalert2";
 import { Center } from "@chakra-ui/react";
 import NavBar from "../../components/sideBar/SideBar";
 import PatientForm from "../../components/Form/patientForm/PatientForm";
 import "./registerPage.css";
+import Loading from "../../components/loading/Loading";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -21,10 +22,17 @@ const FORM_STATE_EMPTY = {
 };
 
 function RegisterPage() {
-	const { setDataPatients, dataPatients } = useContext(PatientsContext);
+	const { setDataPatients, dataPatients, isLoading, setIsLoading } =
+		useContext(PatientsContext);
 	const [form, setForm] = useState(FORM_STATE_EMPTY);
 	const [formValidation, setFormValidation] = useState({});
-	console.log(formValidation);
+
+	useEffect(() => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 2000);
+	}, []);
 
 	const handleOnChangeGenre = (value) => {
 		setForm({
@@ -45,7 +53,6 @@ function RegisterPage() {
 		let result = true;
 		let validationMessages = {};
 
-		//Verificando se algum dos inputs está vazio
 		Object.keys(form).forEach((key) => {
 			if (NON_REQUIRED_FIELDS.includes(key)) {
 				return;
@@ -56,19 +63,16 @@ function RegisterPage() {
 			}
 		});
 
-		// Verificando se o email é válido
 		if (!form.email.includes("@" && ".com")) {
 			validationMessages.email = "Email inválido!";
 			result = false;
 		}
 
-		//Verificando se o CPF é válido
 		if (form.cpf.length !== 11) {
 			validationMessages.cpf = "CPF inválido!";
 			result = false;
 		}
 
-		// Verificando se o CPF já foi cadastrado
 		if (dataPatients.find((patient) => patient.cpf === form.cpf)) {
 			validationMessages.cpf = "CPF já cadastrado!";
 			result = false;
@@ -112,13 +116,17 @@ function RegisterPage() {
 				Cadastro de Pacientes
 			</Center>
 			<NavBar />
-			<PatientForm
-				form={form}
-				handleOnChange={handleOnChange}
-				formValidation={formValidation}
-				handleOnChangeGenre={handleOnChangeGenre}
-				handleSubmitForm={handleSubmitForm}
-			/>
+			{isLoading ? (
+				<Loading />
+			) : (
+				<PatientForm
+					form={form}
+					handleOnChange={handleOnChange}
+					formValidation={formValidation}
+					handleOnChangeGenre={handleOnChangeGenre}
+					handleSubmitForm={handleSubmitForm}
+				/>
+			)}
 		</>
 	);
 }
