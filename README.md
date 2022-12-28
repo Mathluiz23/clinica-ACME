@@ -15,6 +15,12 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 -   Cadastrar novos pacientes.
 -   Editar o cadastro de um paciente.
 
+## ⏯️ Demonstração
+
+<div align="center">
+    <img alt="gif de apresentação" src="src/assets/mainPage.gif"/>
+</div>
+
 <details>
   <summary><strong>Tela Principal</strong></summary><br />
   
@@ -32,7 +38,7 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 ## ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="./assets/main-Page.gif"/>
+    <img alt="gif de apresentação" src="src/assets/mainPage.gif"/>
 </div>
 
 </details>
@@ -57,7 +63,7 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 ### ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="./src/assets/mainPage.gif"/>
+    <img alt="gif de apresentação" src="src/assets/registerPage.gif"/>
 </div>
 
 </details>
@@ -81,7 +87,7 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 ### ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="./assets/details-page.gif"/>
+    <img alt="gif de apresentação" src="src/assets/detailsPage.gif"/>
 </div>
 
 </details>
