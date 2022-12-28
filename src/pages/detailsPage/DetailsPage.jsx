@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import SideBar from "../../components/sideBar/SideBar";
 import PatientForm from "../../components/Form/patientForm/PatientForm";
 import { Center } from "@chakra-ui/react";
+import LogoTipo from "../../components/logoTipo/LogoTipo";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -111,6 +112,7 @@ function DetailsPage() {
 	return (
 		<>
 			<Center className="header">Detalhes do Paciente</Center>
+			<LogoTipo />
 			<SideBar />
 
 			{isUserValid === false && <h1>Usuário não encontrado</h1>}

@@ -6,6 +6,7 @@ import NavBar from "../../components/sideBar/SideBar";
 import PatientForm from "../../components/Form/patientForm/PatientForm";
 import "./registerPage.css";
 import Loading from "../../components/loading/Loading";
+import LogoTipo from "../../components/logoTipo/LogoTipo";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -114,6 +115,7 @@ function RegisterPage() {
 			<Center className="header" as="header">
 				Cadastro de Pacientes
 			</Center>
+			<LogoTipo />
 			<NavBar />
 			{isLoading ? (
 				<Loading />

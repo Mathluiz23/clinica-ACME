@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, FormLabel, Box, Input, Flex, Center } from "@chakra-ui/react";
 import "./mainPage.css";
 import "../../style/shared.css";
+import LogoTipo from "../../components/logoTipo/LogoTipo";
 
 function MainPage() {
 	const [searchInput, setSearchInput] = useState("");
@@ -32,6 +33,8 @@ function MainPage() {
 		<>
 			<div className="main-page-container">
 				<Center className="header">Clínica ACME</Center>
+				<LogoTipo />
+
 				<SideBar />
 
 				<Flex className="search-container">
