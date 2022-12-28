@@ -74,7 +74,7 @@ const PatientForm = ({
 							<Input
 								name="birthDate"
 								variant="filled"
-								type="date"
+								type="text"
 								onChange={handleOnChange}
 								value={form.birthDate}
 								disabled={isInputDisabled}
