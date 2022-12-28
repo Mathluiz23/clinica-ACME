@@ -57,7 +57,7 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 ### ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="./assets/register-page.gif"/>
+    <img alt="gif de apresentação" src="./src/assets/mainPage.gif"/>
 </div>
 
 </details>
