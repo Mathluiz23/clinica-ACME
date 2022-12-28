@@ -46,7 +46,6 @@ function RegisterPage() {
 			...form,
 			[event.target.name]: event.target.value,
 		});
-		console.log("FOORM", form);
 	};
 
 	const isFormValid = () => {
