@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import Swal from "sweetalert2";
 import SideBar from "../../components/sideBar/SideBar";
-import PatientForm from "../../components/Form/PatientForm";
+import PatientForm from "../../components/Form/patientForm/PatientForm";
+import { Center } from "@chakra-ui/react";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -102,7 +103,7 @@ function DetailsPage() {
 
 	return (
 		<>
-			<h1 className="header">Detalhes do Paciente</h1>
+			<Center className="header">Detalhes do Paciente</Center>
 			<SideBar />
 
 			{isUserValid === false && <h1>Usuário não encontrado</h1>}

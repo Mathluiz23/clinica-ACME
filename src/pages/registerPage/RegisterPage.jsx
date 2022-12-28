@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import { PatientsContext } from "../../context/PatientsContext";
 import Swal from "sweetalert2";
-import "./registerPage.css";
-
 import { Center } from "@chakra-ui/react";
 import NavBar from "../../components/sideBar/SideBar";
-import PatientForm from "../../components/Form/PatientForm";
+import PatientForm from "../../components/Form/patientForm/PatientForm";
+import "./registerPage.css";
 
 const NON_REQUIRED_FIELDS = ["address"];
 
@@ -99,6 +98,10 @@ function RegisterPage() {
 				icon: "success",
 				confirmButtonText: "OK",
 				confirmButtonColor: "#2D9CDB",
+			}).then(function (result) {
+				if (result.value) {
+					window.location = "/";
+				}
 			});
 		}
 	}
