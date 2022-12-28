@@ -1,10 +1,13 @@
-<h1 align="center"> Clínica ACME </h1>
+<h1 align="center">  Clínica ACME :calendar: :pushpin: </h1>
 
-## 🖥️📱 Deploy
+<h2> 🖥️📱 Deploy </h2>
 
 Neste link você tem acesso ao projeto disponibilizado na web.
 
 click aqui: https://clinica-acme.vercel.app/
+
+<hr>
+
 
 ## 💻 Projeto
 
@@ -15,14 +18,21 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 -   Cadastrar novos pacientes.
 -   Editar o cadastro de um paciente.
 
+<br>
+<br>
+
+
 ## ⏯️ Demonstração
 
 <div align="center">
     <img alt="gif de apresentação" src="src/assets/mainPage.gif"/>
 </div>
 
+<br>
+<hr>
+
 <details>
-  <summary><strong>Tela Principal</strong></summary><br />
+  <summary><h3>Tela Principal :file_folder: :computer:</h3></summary><br />
   
   ### Na tela principal você pode visualizar tabela com todos os pacientes cadastrados, contendo informações resumidas sobre cada um deles com:
 - Nome
@@ -43,8 +53,11 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 
 </details>
 
+<br>
+<br>
+
 <details>
-  <summary><strong>Tela de Cadastro</strong></summary><br />
+  <summary><h3>Tela de Cadastro :man_technologist:</h3></summary><br />
   
   ### Nesta tela você poderá realizar o cadastro de um novo paciente. Na página inicial, clicando em cadastrar paciente, você é encaminhado para esta página, onde há um formulário com os seguintes campos para preenchimento:
 - Nome (obrigatório)
@@ -68,8 +81,11 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 
 </details>
 
+<br>
+<br>
+
 <details>
-  <summary><strong>Tela de Detalhes</strong></summary><br />
+  <summary><h3>Tela de Detalhes :open_file_folder: :bookmark_tabs:</h3></summary><br />
   
   ### Nesta tela você poderá visualizar as informações completas de cada paciente:
 - Nome
@@ -92,6 +108,8 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 
 </details>
 
+<br>
+
 ### 👨‍💻 Ações do usuário:
 
 -   Filtrar pacientes.
@@ -99,6 +117,8 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 -   Cadastrar Pacientes.
 
 -   Editar Pacientes.
+
+<br>
 
 ## 👨‍🔧 Habilidades
 
@@ -119,6 +139,9 @@ Neste projeto, foram utilizadas as seguintes habilidades:
 -   Utilizado a biblioteca externa `Chakra-ui` para implementação estilizada da estrutura de tabela e formulário implementados no projeto.
 
 -   Utilizado a biblioteca externa `sweetalert2` para gerar alertas personalizados quando alguma informação está incorreta.
+
+<br>
+<br>
 
 ## 👨‍💻 Rodando o projeto localmente
 
