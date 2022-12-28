@@ -7,7 +7,6 @@ function PatientsContextProvider({ children }) {
 	const [dataPatients, setDataPatients] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [patientsFiltered, setPatientsFiltered] = useState([]);
-	// const [dataLocalStorage, setDataLocalStorage] = useState([]);
 
 	useEffect(() => {
 		const exists = localStorage.getItem("patients");

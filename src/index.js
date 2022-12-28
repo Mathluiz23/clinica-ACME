@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import PatientsContextProvider from "./context/PatientsContext";
 import { BrowserRouter } from "react-router-dom";
-import "./index.css";
+import "./style/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
