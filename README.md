@@ -130,6 +130,9 @@ Neste projeto, foram utilizadas as seguintes habilidades:
 
 -   Utilizado os ciclos de vida de um componente React;
 
+-   Utilizado `Context API` para compartilhar dados globais entre componentes.
+
+
 -   Utilizado `Hook useEffect` para lidar com efeitos. Neste projeto o `useEffect` foi utilizado como `componentDidMount` quando o seu array de dependência é declarado como vazio e em alguns casos utilizado como `componentDidUpdtae` quando é informado algum parâmetro no seu array de dependência, neste caso ele executá-ra toda vez que aquele parâmetro informado for modificado.
 
 -   Utilizar `Hook useState` para lidar com mudanças de estado da aplicação;
@@ -163,11 +166,6 @@ Instale as dependências
   npm install
 ```
 
-Entre no diretório do projeto
-
-```bash
-  cd src
-```
 
 Inicie o projeto,
 
