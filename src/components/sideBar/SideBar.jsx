@@ -7,13 +7,17 @@ function SideBar() {
 			<nav className="side-bar">
 				<ul className="nav-links">
 					<a className="nav-item" href="/">
+						<li>Home</li>
+					</a>
+					<a className="nav-item" href="/">
 						<li>Pacientes</li>
 					</a>
-					<a className="nav-item" href="/">
+					<a
+						className="nav-item"
+						href="https://www.interprocess.com.br/"
+						target="blank"
+					>
 						<li>Empresa Parceira</li>
-					</a>
-					<a className="nav-item" href="/">
-						<li>Localização</li>
 					</a>
 				</ul>
 			</nav>
