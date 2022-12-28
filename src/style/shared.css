@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-/* .main-page-container {
-  border: solid red;
-} */
-
 .header {
   width: 100%;
   position: fixed;
@@ -15,49 +11,10 @@
   justify-content: center;
   align-items: center;
   height: 80px;
-  color: white;
+  color: var(--color-ligth);
   font-weight: bold;
   font-size: 30px;
-  background-color: rgb(18, 7, 88);
-  box-shadow: 1px 1px 2px 2px #3498db;
+  background-color: var(--color-primary);
+  box-shadow: 1px 1px 2px 2px var(--color-variant);
   z-index: 1;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  border: solid yellow;
-  margin-top: 100px;
-  border-radius: 2px;
-  box-shadow: 0 1px 0 rgb(44, 138, 215);
-  margin-left: 180px;
-  width: 85% !important;
-  min-width: 600px;
-}
-
-.search-container .box-form Input {
-  margin-top: 8px;
-}
-
-.register-button {
-  color: white;
-  width: 220px;
-  height: 50px;
-  font-size: 2px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: rgb(18, 7, 88);
-  margin-left: 5px;
-}
-
-.search-button {
-  display: flex;
-  color: white;
-  width: 220px;
-  height: 50px;
-  font-size: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: rgb(18, 7, 88);
-  margin: 5px;
 }

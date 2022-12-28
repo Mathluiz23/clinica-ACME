@@ -1,0 +1,30 @@
+.search-container {
+  margin-top: 80px;
+  height: 80px;
+  width: 85%;
+  margin-left: 180px;
+}
+
+.search-input {
+  margin-top: 17px;
+  height: 45px !important;
+  border: none !important;
+  background-color: var(--color-ligth) !important;
+}
+
+.container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-and-search-button {
+  color: var(--color-ligth);
+  width: 220px;
+  height: 45px !important;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  margin-left: 5px;
+}

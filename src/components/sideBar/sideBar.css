@@ -4,7 +4,7 @@
   width: 150px;
   box-shadow: 1px 0 0 0 black;
   height: 100vh;
-  background-color: rgb(18, 7, 88);
+  background-color: var(--color-primary);
 }
 
 .side-bar .nav-links {
@@ -19,13 +19,13 @@
   padding: 5px;
   margin-top: 10px;
   display: block;
-  color: aliceblue;
+  color: var(--color-ligth);
 }
 
 .side-bar .nav-links a.nav-item:hover {
-  background-color: #3498db;
+  background-color: var(--color-variant);
   box-shadow: 1px 1px 1px 1px black;
   border-radius: 0 20px 20px 0;
-  width: 140px;
+  width: 145px;
   display: block;
 }
