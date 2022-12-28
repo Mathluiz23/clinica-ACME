@@ -166,11 +166,6 @@ Instale as dependências
   npm install
 ```
 
-Entre no diretório do projeto
-
-```bash
-  cd src
-```
 
 Inicie o projeto,
 
