@@ -35,6 +35,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="name">Nome</FormLabel>
 							<Input
+								data-testid="name-input"
 								name="name"
 								variant="filled"
 								type="text"
@@ -51,6 +52,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="email">E-mail</FormLabel>
 							<Input
+								data-testid="email-input"
 								name="email"
 								variant="filled"
 								type="email"
@@ -72,6 +74,7 @@ const PatientForm = ({
 								Data de Nascimento
 							</FormLabel>
 							<Input
+								data-testid="birthDate-input"
 								name="birthDate"
 								variant="filled"
 								type="text"
@@ -87,6 +90,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="cpf">CPF</FormLabel>
 							<Input
+								data-testid="cpf-input"
 								name="cpf"
 								variant="filled"
 								type="number"
@@ -106,6 +110,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="address">Endereço</FormLabel>
 							<Input
+								data-testid="address-input"
 								name="address"
 								variant="filled"
 								placeholder="Rua Brasil 1"
@@ -117,6 +122,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="city">Cidade</FormLabel>
 							<Input
+								data-testid="city-input"
 								name="city"
 								variant="filled"
 								placeholder="Porto Alegre"
@@ -135,6 +141,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="phone">Celular</FormLabel>
 							<Input
+								data-testid="phone-input"
 								name="phone"
 								variant="filled"
 								type="number"
@@ -151,6 +158,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel>Sexo</FormLabel>
 							<RadioGroup
+								data-testid="genre-radio"
 								name="genre"
 								onChange={handleOnChangeGenre}
 								value={form.genre}
@@ -169,6 +177,7 @@ const PatientForm = ({
 						<Box className="box-form">
 							<FormLabel htmlFor="status">Status</FormLabel>
 							<Select
+								data-testid="status-select"
 								name="status"
 								variant="flushed"
 								onChange={handleOnChange}
@@ -184,6 +193,7 @@ const PatientForm = ({
 					{!isEditForm ? (
 						<HStack>
 							<Button
+								data-testid="submit-btn"
 								className="edit-and-submit-button"
 								type="button"
 								isDisabled={false}
@@ -195,6 +205,7 @@ const PatientForm = ({
 					) : (
 						<HStack>
 							<Button
+								data-testid="edit-btn"
 								className="edit-and-submit-button"
 								type="button"
 								onClick={() => {
@@ -206,6 +217,7 @@ const PatientForm = ({
 							</Button>
 
 							<Button
+								data-testid="save-edit-btn"
 								className="edit-and-submit-button"
 								type="button"
 								onClick={handleSubmitForm}

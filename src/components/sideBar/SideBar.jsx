@@ -6,13 +6,18 @@ function SideBar() {
 		<>
 			<nav className="side-bar">
 				<ul className="nav-links">
-					<a className="nav-item" href="/">
+					<a data-testid="link-home" className="nav-item" href="/">
 						<li>Home</li>
 					</a>
-					<a className="nav-item" href="/">
+					<a
+						data-testid="link-pacientes"
+						className="nav-item"
+						href="/"
+					>
 						<li>Pacientes</li>
 					</a>
 					<a
+						data-testid="link-empresa"
 						className="nav-item"
 						href="https://www.interprocess.com.br/"
 						target="blank"

@@ -11,17 +11,13 @@ function PatientsContextProvider({ children }) {
 	useEffect(() => {
 		const exists = localStorage.getItem("patients");
 		if (exists) {
-			setTimeout(() => {
-				const dataLocalStorage = JSON.parse(exists);
-				setDataPatients(dataLocalStorage);
-				setIsLoading(false);
-			}, 2000);
+			const dataLocalStorage = JSON.parse(exists);
+			setDataPatients(dataLocalStorage);
+			setIsLoading(false);
 		} else {
-			setTimeout(() => {
-				setDataPatients(data);
-				setIsLoading(false);
-				localStorage.setItem("patients", JSON.stringify(data));
-			}, 2000);
+			setDataPatients(data);
+			setIsLoading(false);
+			localStorage.setItem("patients", JSON.stringify(data));
 		}
 	}, []);
 

@@ -7,10 +7,12 @@ import { Button, FormLabel, Box, Input, Flex, Center } from "@chakra-ui/react";
 import "./mainPage.css";
 import "../../style/shared.css";
 import LogoTipo from "../../components/logoTipo/LogoTipo";
+import Loading from "../../components/loading/Loading";
 
 function MainPage() {
 	const [searchInput, setSearchInput] = useState("");
-	const { dataPatients, setPatientsFiltered } = useContext(PatientsContext);
+	const { dataPatients, setPatientsFiltered, isLoading } =
+		useContext(PatientsContext);
 	const navigate = useNavigate();
 
 	function handleClickFilter() {
@@ -31,51 +33,58 @@ function MainPage() {
 
 	return (
 		<>
-			<div className="main-page-container">
-				<Center className="header">Clínica ACME</Center>
-				<LogoTipo />
+			{isLoading ? (
+				<Loading />
+			) : (
+				<div className="main-page-container">
+					<Center className="header">Clínica ACME</Center>
+					<LogoTipo />
 
-				<SideBar />
+					<SideBar />
 
-				<Flex className="search-container">
-					<Box className="box-form">
-						<FormLabel htmlFor="searchInput">
-							<Input
-								className="search-input"
-								type="text"
-								name="searchInput"
-								id="searchInput"
-								placeholder="Pesquise o paciente por nome, CPF ou status"
-								value={searchInput}
-								onChange={(event) => {
-									setSearchInput(event.target.value);
-								}}
-							/>
-						</FormLabel>
-					</Box>
+					<Flex className="search-container">
+						<Box className="box-form">
+							<FormLabel htmlFor="searchInput">
+								<Input
+									data-testid="search-input"
+									className="search-input"
+									type="text"
+									name="searchInput"
+									id="searchInput"
+									placeholder="Pesquise o paciente por nome, CPF ou status"
+									value={searchInput}
+									onChange={(event) => {
+										setSearchInput(event.target.value);
+									}}
+								/>
+							</FormLabel>
+						</Box>
 
-					<Box className="container-button">
-						<Button
-							className="register-and-search-button"
-							type="button"
-							colorScheme="rgb(18, 7, 88)"
-							onClick={handleClickFilter}
-						>
-							Pesquisar Paciente
-						</Button>
-						<Button
-							id="btn-register"
-							className="register-and-search-button"
-							type="button"
-							colorScheme="rgb(18, 7, 88)"
-							onClick={registerPatient}
-						>
-							Cadastrar Paciente
-						</Button>
-					</Box>
-				</Flex>
-				<Patients />
-			</div>
+						<Box className="container-button">
+							<Button
+								data-testid="btn-search"
+								className="register-and-search-button"
+								type="button"
+								colorScheme="rgb(18, 7, 88)"
+								onClick={handleClickFilter}
+							>
+								Pesquisar Paciente
+							</Button>
+							<Button
+								data-testid="btn-register"
+								id="btn-register"
+								className="register-and-search-button"
+								type="button"
+								colorScheme="rgb(18, 7, 88)"
+								onClick={registerPatient}
+							>
+								Cadastrar Paciente
+							</Button>
+						</Box>
+					</Flex>
+					<Patients />
+				</div>
+			)}
 		</>
 	);
 }

@@ -14,10 +14,10 @@ function PatientTable() {
 			{isLoading ? (
 				<Loading />
 			) : (
-				<Table id="patientsList" className="table-patients">
+				<Table data-testid="table-patients" className="table-patients">
 					<Thead>
 						<Tr>
-							<Th>Nome</Th>
+							<Th data-testid="table-name">Nome</Th>
 							<Th>CPF</Th>
 							<Th>Status</Th>
 							<Th>Ações</Th>
