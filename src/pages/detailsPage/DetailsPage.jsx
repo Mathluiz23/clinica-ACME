@@ -103,7 +103,7 @@ function DetailsPage() {
 				confirmButtonColor: "#2D9CDB",
 			}).then(function (result) {
 				if (result.value) {
-					window.location = "/";
+					window.location = "/patient";
 				}
 			});
 		}
