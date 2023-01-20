@@ -5,7 +5,7 @@ function Loading() {
 	return (
 		<>
 			<div data-testid="loading" className="loading"></div>
-			<span>Carregando...</span>
+			<span className="loading-span">Carregando...</span>
 		</>
 	);
 }
