@@ -38,3 +38,24 @@ const patientsList = [
 ];
 
 export default patientsList;
+
+export const userList = [
+	{
+		id: 1,
+		name: "Matheus",
+		email: "matheus_luizs@hotmail.com",
+		password: "123456",
+	},
+	{
+		id: 2,
+		name: "João",
+		email: "joao@interprocess.com",
+		password: "1234",
+	},
+	{
+		id: 3,
+		name: "Maria",
+		email: "maria@interprocess.com",
+		password: "12345",
+	},
+];
