@@ -1,7 +1,8 @@
 .logoTipo {
   position: fixed;
-  width: 110px;
+  width: 150px;
   height: 80px;
   top: 0;
+  margin: 5px;
   z-index: 1;
 }

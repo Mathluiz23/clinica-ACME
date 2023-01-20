@@ -19,7 +19,7 @@
 }
 
 .register-and-search-button {
-  color: var(--color-ligth);
+  color: var(--color-ligth) !important;
   width: 220px;
   height: 45px !important;
   font-size: 15px;

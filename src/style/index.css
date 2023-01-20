@@ -16,8 +16,8 @@ body {
 }
 
 :root {
-  --color-primary: #120758;
-  --color-variant: rgb(10, 135, 220);
+  --color-primary: #008080;
+  --color-variant: #052c3a;
   --color-ligth: rgb(250, 250, 250);
   --container-width-lg: 80%;
   --container-width-md: 86%;
