@@ -6,13 +6,17 @@ function SideBar() {
 		<>
 			<nav className="side-bar">
 				<ul className="nav-links">
-					<a data-testid="link-home" className="nav-item" href="/">
+					<a
+						data-testid="link-home"
+						className="nav-item"
+						href="/patient"
+					>
 						<li>Home</li>
 					</a>
 					<a
 						data-testid="link-pacientes"
 						className="nav-item"
-						href="/"
+						href="/patient"
 					>
 						<li>Pacientes</li>
 					</a>
