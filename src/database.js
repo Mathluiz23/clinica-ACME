@@ -2,7 +2,7 @@ const patientsList = [
 	{
 		id: 1,
 		city: "Waterford",
-		cpf: "03049808039",
+		cpf: "0304982222",
 		birthDate: "01/01/1990",
 		email: "matheus@gmail.com",
 		address: "Rua 1",
