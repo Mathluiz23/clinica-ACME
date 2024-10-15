@@ -6,6 +6,20 @@ Neste link você tem acesso ao projeto disponibilizado na web.
 
 click aqui: https://clinica-acme.vercel.app/
 
+para logar na aplicação voce pode utilizar os seguintes dados:
+
+{
+email: "joao@interprocess.com",
+password: "1234",
+}
+
+ou
+
+    {
+    	email: "maria@interprocess.com",
+    	password: "12345",
+    },
+
 <hr>
 
 ## 💻 Projeto
@@ -29,8 +43,7 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 <br>
 <hr>
 
-<details>
-  <summary><h3>Tela Principal :file_folder: :computer:</h3></summary><br />
+<summary><h3>Tela Principal :file_folder: :computer:</h3></summary><br />
   
   ### Na tela principal você pode visualizar tabela com todos os pacientes cadastrados, contendo informações resumidas sobre cada um deles com:
 - Nome
@@ -46,10 +59,8 @@ Este projeto consiste em uma aplicação de consultar e cadastrar pacientes. Ond
 ## ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="src/assets/mainPage.gif"/>
+    <img alt="gif de apresentação" src="src/assets/tabela.png"/>
 </div>
-
-</details>
 
 <br>
 <br>
@@ -74,7 +85,7 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 ### ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="src/assets/registerPage.gif"/>
+    <img alt="gif de apresentação" src="src/assets/cadastro.png"/>
 </div>
 
 </details>
@@ -101,7 +112,7 @@ Caso todos os campos sejam válidos, você receberá a mensagem `Paciente cadast
 ### ⏯️ Demonstração
 
 <div align="center">
-    <img alt="gif de apresentação" src="src/assets/detailsPage.gif"/>
+    <img alt="gif de apresentação" src="src/assets/cadastro.png"/>
 </div>
 
 </details>
